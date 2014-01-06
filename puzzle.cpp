@@ -60,16 +60,16 @@ void check_state(vector<int> a){
 			cout << "----" << endl;
 			if ((p+1)<=2 && !found){ // down
 				m = a;
-		   	m[p*3+q] = m[(p+1)*3+q];
-		   	m[(p+1)*3+q] = 0;
+				m[p*3+q] = m[(p+1)*3+q];
+				m[(p+1)*3+q] = 0;
 				if (!check_path(m) && !found){
 					check_state(m);
 				}
 			}
 			if ((q+1)<=2 && !found){ // right
 				m = a;
-		   	m[p*3+q] = m[p*3+(q+1)];
-		   	m[p*3+(q+1)] = 0;
+				m[p*3+q] = m[p*3+(q+1)];
+				m[p*3+(q+1)] = 0;
 				if (!check_path(m)){
 					check_state(m);
 				}
@@ -84,8 +84,8 @@ void check_state(vector<int> a){
 			}
 			if ((q-1)>=0 && !found){ // left
 				m = a;
-		   	m[p*3+q] = m[p*3+(q-1)];
-		   	m[p*3+(q-1)] = 0;
+				m[p*3+q] = m[p*3+(q-1)];
+				m[p*3+(q-1)] = 0;
 				if (!check_path(m) && !found){
 					check_state(m);
 				}
