@@ -13,9 +13,7 @@ void print_state(vector<int> a){
 			cout << a[i] << endl;
 		else
 			cout << a[i] << " ";
-	//  cout << a[i] << " ";
 	}
-	cout << endl;
 }
 
 bool check_path(vector<int> a){
@@ -54,46 +52,41 @@ void check_state(vector<int> a){
 			}
 		}
 		if (completeness(a)){
-			//cout << "Found result" << endl;
 			print_state(a);
 			found = true;
 		}
 		else{
 			print_state(a);
 			cout << "----" << endl;
-			if ((p+1)<=2){ // down
+			if ((p+1)<=2 && !found){ // down
 				m = a;
 		   	m[p*3+q] = m[(p+1)*3+q];
 		   	m[(p+1)*3+q] = 0;
-				if (!check_path(m)){
-					//cout << "down : ";
+				if (!check_path(m) && !found){
 					check_state(m);
 				}
 			}
-			if ((q+1)<=2){ // right
+			if ((q+1)<=2 && !found){ // right
 				m = a;
 		   	m[p*3+q] = m[p*3+(q+1)];
 		   	m[p*3+(q+1)] = 0;
 				if (!check_path(m)){
-					//cout << "right : ";
 					check_state(m);
 				}
 			}
-			if ((p-1)>=0){ // up
+			if ((p-1)>=0 && !found){ // up
 				m = a;
 				m[p*3+q] = m[(p-1)*3+q];
 				m[(p-1)*3+q] = 0;
-				if (!check_path(m)){
-					//cout << "up : ";
+				if (!check_path(m) && !found){
 					check_state(m);
 				}
 			}
-			if ((q-1)>=0){ // left
+			if ((q-1)>=0 && !found){ // left
 				m = a;
 		   	m[p*3+q] = m[p*3+(q-1)];
 		   	m[p*3+(q-1)] = 0;
-				if (!check_path(m)){
-					//cout << "left : ";
+				if (!check_path(m) && !found){
 					check_state(m);
 				}
 			}
