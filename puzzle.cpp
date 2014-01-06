@@ -13,7 +13,9 @@ void print_state(vector<int> a){
 			cout << a[i] << endl;
 		else
 			cout << a[i] << " ";
+	//  cout << a[i] << " ";
 	}
+	cout << endl;
 }
 
 bool check_path(vector<int> a){
@@ -21,12 +23,8 @@ bool check_path(vector<int> a){
 	vector < vector<int> >::iterator itr;
 	for (itr = state.begin(); itr != state.end(); ++itr){
 		if (*itr == a){
-			cout << "====Eq Array A====" << endl;
-			print_state(*itr);
-			cout << "====Eq Array B====" << endl;
-			print_state(a);
-			cout << "====End Array ====" << endl;
 			exist = true;
+			break;
 		}
 	}
 	if (!exist)
@@ -56,6 +54,7 @@ void check_state(vector<int> a){
 			}
 		}
 		if (completeness(a)){
+			//cout << "Found result" << endl;
 			print_state(a);
 			found = true;
 		}
@@ -67,6 +66,7 @@ void check_state(vector<int> a){
 		   	m[p*3+q] = m[(p+1)*3+q];
 		   	m[(p+1)*3+q] = 0;
 				if (!check_path(m)){
+					//cout << "down : ";
 					check_state(m);
 				}
 			}
@@ -75,6 +75,7 @@ void check_state(vector<int> a){
 		   	m[p*3+q] = m[p*3+(q+1)];
 		   	m[p*3+(q+1)] = 0;
 				if (!check_path(m)){
+					//cout << "right : ";
 					check_state(m);
 				}
 			}
@@ -83,6 +84,7 @@ void check_state(vector<int> a){
 				m[p*3+q] = m[(p-1)*3+q];
 				m[(p-1)*3+q] = 0;
 				if (!check_path(m)){
+					//cout << "up : ";
 					check_state(m);
 				}
 			}
@@ -91,6 +93,7 @@ void check_state(vector<int> a){
 		   	m[p*3+q] = m[p*3+(q-1)];
 		   	m[p*3+(q-1)] = 0;
 				if (!check_path(m)){
+					//cout << "left : ";
 					check_state(m);
 				}
 			}
