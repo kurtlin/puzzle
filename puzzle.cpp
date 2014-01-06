@@ -42,7 +42,7 @@ void check_state(int a[9], bool s[9]){
 				}
 				m[p*3+q] = m[(p-1)*3+q];
 				m[(p-1)*3+q] = 0;
-				//n[(p-1)*3+q] = true;
+				n[(p-1)*3+q] = true;
 				check_state(m, n);
 			}
 			if (((p+1)<=2) && (s[(p+1)*3+q] == false)){
@@ -52,7 +52,7 @@ void check_state(int a[9], bool s[9]){
 				}
 				m[p*3+q] = m[(p+1)*3+q];
 				m[(p+1)*3+q] = 0;
-				//n[(p+1)*3+q] = true;
+				n[(p+1)*3+q] = true;
 				check_state(m, n);
 			}
 			if (((q-1)>=0) && (s[p*3+(q-1)] == false)){
@@ -62,7 +62,7 @@ void check_state(int a[9], bool s[9]){
 				}
 				m[p*3+q] = m[p*3+(q-1)];
 				m[p*3+(q-1)] = 0;
-				//n[p*3+(q-1)] = true;
+				n[p*3+(q-1)] = true;
 				check_state(m, n);
 			}
 			if (((q+1)<=2) && (s[p*3+(q+1)] == false)){
@@ -72,7 +72,7 @@ void check_state(int a[9], bool s[9]){
 				}
 				m[p*3+q] = m[p*3+(q+1)];
 				m[p*3+(q+1)] = 0;
-				//n[p*3+(q+1)] = true;
+				n[p*3+(q+1)] = true;
 				check_state(m, n);
 			}
 		}
@@ -85,11 +85,10 @@ int main (){
 
 	for (int i=0; i <= 8; i++){
 		cin >> a[i];
-		s[i] = false;
-	  // if (a[i] == 0)
-	  // 	s[i] = true;
-	  // else
-	  // 	s[i] = false;
+	  if (a[i] == 0)
+	  	s[i] = true;
+	  else
+	  	s[i] = false;
 	}
 
 	check_state(a, s);
