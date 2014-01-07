@@ -44,51 +44,49 @@ void check_state(vector<int> a){
 	int i;
 	int p, q;
 	vector<int> m;
-	if (!found){
-		for (i=0; i <= 8; i++){
-			if (a[i] == 0){
-				p = i/3;
-				q = i%3;
+	for (i=0; i <= 8; i++){
+		if (a[i] == 0){
+			p = i/3;
+			q = i%3;
+		}
+	}
+	if (completeness(a)){
+		print_state(a);
+		found = true;
+	}
+	else{
+		print_state(a);
+		cout << "----" << endl;
+		if ((p+1)<=2 && !found){ // down
+			m = a;
+			m[p*3+q] = m[(p+1)*3+q];
+			m[(p+1)*3+q] = 0;
+			if (!check_path(m) && !found){
+				check_state(m);
 			}
 		}
-		if (completeness(a)){
-			print_state(a);
-			found = true;
+		if ((q+1)<=2 && !found){ // right
+			m = a;
+			m[p*3+q] = m[p*3+(q+1)];
+			m[p*3+(q+1)] = 0;
+			if (!check_path(m)){
+				check_state(m);
+			}
 		}
-		else{
-			print_state(a);
-			cout << "----" << endl;
-			if ((p+1)<=2 && !found){ // down
-				m = a;
-				m[p*3+q] = m[(p+1)*3+q];
-				m[(p+1)*3+q] = 0;
-				if (!check_path(m) && !found){
-					check_state(m);
-				}
+		if ((p-1)>=0 && !found){ // up
+			m = a;
+			m[p*3+q] = m[(p-1)*3+q];
+			m[(p-1)*3+q] = 0;
+			if (!check_path(m) && !found){
+				check_state(m);
 			}
-			if ((q+1)<=2 && !found){ // right
-				m = a;
-				m[p*3+q] = m[p*3+(q+1)];
-				m[p*3+(q+1)] = 0;
-				if (!check_path(m)){
-					check_state(m);
-				}
-			}
-			if ((p-1)>=0 && !found){ // up
-				m = a;
-				m[p*3+q] = m[(p-1)*3+q];
-				m[(p-1)*3+q] = 0;
-				if (!check_path(m) && !found){
-					check_state(m);
-				}
-			}
-			if ((q-1)>=0 && !found){ // left
-				m = a;
-				m[p*3+q] = m[p*3+(q-1)];
-				m[p*3+(q-1)] = 0;
-				if (!check_path(m) && !found){
-					check_state(m);
-				}
+		}
+		if ((q-1)>=0 && !found){ // left
+			m = a;
+			m[p*3+q] = m[p*3+(q-1)];
+			m[p*3+(q-1)] = 0;
+			if (!check_path(m) && !found){
+				check_state(m);
 			}
 		}
 	}
